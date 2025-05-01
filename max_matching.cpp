@@ -208,74 +208,74 @@ int get_size(const std::vector<int> &mt) {
 }
     
 
-int main() {
+// int main() {
 
-    constexpr int E = 1000;
+//     constexpr int E = 1000;
 
 
-    for (int n = 1; n <= 1000; ) {
-        int p10 = 1;
-        for (int m = n;;) {
-            m /= 10;
-            if (m == 0) {
-                break;
-            }
-            p10 *= 10;
-        }
-        n += p10;
-        long double avg_gs = 0.0L;
-        long double avg_pop = 0.0L;
-        long double avg_dif_pop = 0.0L;
-        long double avg_dif_gs = 0.0L;
-        long double avg_blocking_pop = 0.0L;
-        long double avg_blocking_gs = 0.0L;
-        long double avg_blocking_max = 0.0L;
-        long double avg_bad_pop = 0.0L;
-        long double avg_bad_gs = 0.0L;
-        for (int i = 0; i < E; ) {
-            // auto g = exponential_graph(n, n);
-            auto g = uniform_random_graph(n, n);
-            auto mt_max = max_matching(g, n, n);
-            auto mt_pop = popular_matching(g, n, n, n);
-            auto mt_gs  = gale_shapley(g, n, n);
+//     for (int n = 1; n <= 1000; ) {
+//         int p10 = 1;
+//         for (int m = n;;) {
+//             m /= 10;
+//             if (m == 0) {
+//                 break;
+//             }
+//             p10 *= 10;
+//         }
+//         n += p10;
+//         long double avg_gs = 0.0L;
+//         long double avg_pop = 0.0L;
+//         long double avg_dif_pop = 0.0L;
+//         long double avg_dif_gs = 0.0L;
+//         long double avg_blocking_pop = 0.0L;
+//         long double avg_blocking_gs = 0.0L;
+//         long double avg_blocking_max = 0.0L;
+//         long double avg_bad_pop = 0.0L;
+//         long double avg_bad_gs = 0.0L;
+//         for (int i = 0; i < E; ) {
+//             // auto g = exponential_graph(n, n);
+//             auto g = uniform_random_graph(n, n);
+//             auto mt_max = max_matching(g, n, n);
+//             auto mt_pop = popular_matching(g, n, n, n);
+//             auto mt_gs  = gale_shapley(g, n, n);
     
-            avg_blocking_pop += count_blocking(g, n, n, mt_pop);
-            avg_blocking_max += count_blocking(g, n, n, mt_max);
-            avg_blocking_gs += count_blocking(g, n, n, mt_gs);
+//             avg_blocking_pop += count_blocking(g, n, n, mt_pop);
+//             avg_blocking_max += count_blocking(g, n, n, mt_max);
+//             avg_blocking_gs += count_blocking(g, n, n, mt_gs);
 
-            auto size_max = get_size(mt_max);
-            auto size_pop = get_size(mt_pop);
-            auto size_gs  = get_size(mt_gs);
+//             auto size_max = get_size(mt_max);
+//             auto size_pop = get_size(mt_pop);
+//             auto size_gs  = get_size(mt_gs);
 
-            avg_dif_gs += size_max - size_gs;
-            avg_dif_pop += size_max - size_pop;
+//             avg_dif_gs += size_max - size_gs;
+//             avg_dif_pop += size_max - size_pop;
 
-            avg_bad_pop += size_max != size_pop;
-            avg_bad_gs += size_max != size_gs;
+//             avg_bad_pop += size_max != size_pop;
+//             avg_bad_gs += size_max != size_gs;
 
-            if (size_max == 0) {
-                continue;
-            }
+//             if (size_max == 0) {
+//                 continue;
+//             }
     
-            long double r1 = static_cast<long double>(size_pop) / size_max;
-            long double r2 = static_cast<long double>(size_gs) / size_max;
-            avg_pop += r1;
-            avg_gs += r2;
-            i++;
-        }
-        avg_pop /= E;
-        avg_gs /= E;
-        avg_dif_gs /= E;
-        avg_dif_pop /= E;
-        avg_blocking_gs /= E;
-        avg_blocking_max /= E;
-        avg_blocking_pop /= E;
-        avg_bad_gs /= E;
-        avg_bad_pop /= E;
+//             long double r1 = static_cast<long double>(size_pop) / size_max;
+//             long double r2 = static_cast<long double>(size_gs) / size_max;
+//             avg_pop += r1;
+//             avg_gs += r2;
+//             i++;
+//         }
+//         avg_pop /= E;
+//         avg_gs /= E;
+//         avg_dif_gs /= E;
+//         avg_dif_pop /= E;
+//         avg_blocking_gs /= E;
+//         avg_blocking_max /= E;
+//         avg_blocking_pop /= E;
+//         avg_bad_gs /= E;
+//         avg_bad_pop /= E;
 
-        // std::cout << std::format("n = {}, avg_pop = {}, avg_gs = {}, avg_dif_gs = {}, avg_dif_pop = {}\n", n, avg_pop, avg_gs, avg_dif_gs, avg_dif_pop);
-        std::cout << std::format("n = {}, avg_blocking_pop = {}, avg_blocking_max = {}\n", n, avg_blocking_pop, avg_blocking_max);
-        // std::cout << std::format("n = {}, avg_bad_gs = {}, avg_bad_pop = {}\n", n, avg_bad_gs, avg_bad_pop);
-    }
+//         // std::cout << std::format("n = {}, avg_pop = {}, avg_gs = {}, avg_dif_gs = {}, avg_dif_pop = {}\n", n, avg_pop, avg_gs, avg_dif_gs, avg_dif_pop);
+//         std::cout << std::format("n = {}, avg_blocking_pop = {}, avg_blocking_max = {}\n", n, avg_blocking_pop, avg_blocking_max);
+//         // std::cout << std::format("n = {}, avg_bad_gs = {}, avg_bad_pop = {}\n", n, avg_bad_gs, avg_bad_pop);
+//     }
 
-}
+// }
