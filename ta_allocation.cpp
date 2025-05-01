@@ -131,7 +131,7 @@ get_allotment(std::vector<std::unique_ptr<CourseBase>> &courses, std::vector<Stu
     for (int i = 0; i < n; i++) {
         if (mt[i] != -1) {
             auto j = mt[i] - n;
-            j = std::lower_bound(cstart.begin(), cstart.end(), j) - cstart.begin();
+            j = std::upper_bound(cstart.begin(), cstart.end(), j) - cstart.begin() - 1;
             allotment.emplace_back(students[i].get_id(), courses[j]->get_id());
         }
     }
